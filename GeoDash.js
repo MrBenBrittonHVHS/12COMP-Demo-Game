@@ -1,4 +1,4 @@
- /*******************************************************/
+/*******************************************************/
 // P5.play: t01_create_sprite
 // Create a sprite
 // Written by ??? 
@@ -20,14 +20,16 @@ function setup() {
     player.color = color("purple");
     floor =  new Sprite(SCREEN_WIDTH/2,  SCREEN_HEIGHT, SCREEN_WIDTH, 4, 's');
     floor.color = color("black");
-    world.gravity.y = 10;
+    world.gravity.y = 80;
     
     document.addEventListener("keydown", 
         function(event) {
-            console.log("Key pressed!");
-            if (event.code === 'ArrowLeft') {
-            }else {
-        }
+            console.log("Key pressed!"+player.y);
+
+            if(player.y > 184 ){// 184 - found from testing - floor level
+                console.log("Key pressed!");
+                player.vel.y = -20;
+            }
     });
 
 
