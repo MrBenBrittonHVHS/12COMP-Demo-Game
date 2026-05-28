@@ -1,9 +1,57 @@
 /*******************************************************/
-// P5.play: t01_create_sprite
-// Create a sprite
-// Written by ??? 
+// P5.play: A simple game
+// 
+// This game can be used as an extra game for the 12COMP
+// and 13COMP Databases assessments
+//
+// Written by Mr Britton
 /*******************************************************/
-console.log("%c t01_create_sprite", "color: blue;");
+console.log("Running the game");
+
+
+// End game code
+function endGame(_player, _obstacle){
+    console.log("Game ended, you got "+score+" points.")
+    screenSelector = "end";
+    player.remove();
+    obstacles.removeAll();
+    // Put your database writes here:
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 200;
@@ -26,7 +74,6 @@ var obstacles;
 // setup()
 /*******************************************************/
 function setup() {
-    console.log("setup: ");
     cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     
     obstacles = new Group();
@@ -42,7 +89,6 @@ function setup() {
                 resetGame();
             }else{
                 if(player.y > 184 ){// 184 - found from testing - floor level
-                    console.log("Key pressed!");
                     player.vel.y = -20;
                 }
             }
@@ -67,17 +113,11 @@ function draw() {
 }
 
 function newObstacle(){
-    obstacle = new Sprite((SCREEN_WIDTH -100),  SCREEN_HEIGHT - OBSTACLE_HEIGHT/2, OBSTACLE_WIDTH, OBSTACLE_HEIGHT, 'k');
+    obstacle = new Sprite((SCREEN_WIDTH + 50),  SCREEN_HEIGHT - OBSTACLE_HEIGHT/2, OBSTACLE_WIDTH, OBSTACLE_HEIGHT, 'k');
     obstacle.color = color("yellow");
     obstacle.vel.x = -10;
     
     obstacles.add(obstacle);
-}
-
-function youDead(_player, _obstacle){
-    screenSelector = "end";
-    player.remove();
-    obstacles.removeAll();
 }
 
 // Main screen functions
@@ -92,7 +132,8 @@ function startScreen(){
     strokeWeight(4);
     text("Welcome to the game", 50, 50);
     textSize(24);
-    text("Press any key to start", 50, 110);
+    text("Press any key to start", 50, 110);    textSize(24);
+    text("Press space to jump", 50, 150);
 }
 
 function gameScreen(){
@@ -128,7 +169,7 @@ function endScreen(){
 function resetGame(){
     player = new Sprite(PLAYER_WIDTH*1.2,  SCREEN_HEIGHT/2, PLAYER_WIDTH, PLAYER_HEIGHT, 'd');
     player.color = color("purple");
-    player.collides(obstacles, youDead);
+    player.collides(obstacles, endGame);
     score = 0;
 }
 
